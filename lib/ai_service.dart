@@ -1,0 +1,87 @@
+
+
+// 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
+// AIzaSyCmdBYLDJQvCgpKNAKfyop33JcWkd8bcts
+
+
+import 'dart:convert';
+import 'package:http/http.dart' as http;
+
+class AiService {
+  // ⚠️ Use your real API key here (DO NOT print it in logs or share it)
+  static const String _apiKey = 'AIzaSyBu9rE9AHK6LZ5EJdYCRjPeJydbTAWi0v8';
+
+  // ✅ Use a valid model name for v1beta
+  // You can use either:
+  //   gemini-1.5-flash-001  (older)
+  //   gemini-2.5-flash      (newer, recommended)
+  static const String _model = 'gemini-2.5-flash';
+
+  // ✅ v1beta endpoint for generateContent
+  static String get _baseUrl =>
+      'https://generativelanguage.googleapis.com/v1beta/models/$_model:generateContent';
+
+  Future<String> sendMessage(String message) async {
+    try {
+      final uri = Uri.parse(_baseUrl);
+
+      final body = {
+        "contents": [
+          {
+            "role": "user",
+            "parts": [
+              {
+                "text":
+                    "You are a helpful, concise and friendly AI assistant.\n\nUser: $message"
+              }
+            ]
+          }
+        ],
+        "generationConfig": {
+          "temperature": 0.7,
+          "maxOutputTokens": 1000,
+        }
+      };
+
+      print('➡️ Sending request to Gemini: $uri');
+      print('➡️ Body: ${jsonEncode(body)}');
+
+      final response = await http.post(
+        uri,
+        headers: {
+          'Content-Type': 'application/json',
+          // ✅ Recommended way: send API key in header
+          'x-goog-api-key': _apiKey,
+        },
+        body: jsonEncode(body),
+      );
+
+      print('⬅️ Gemini status: ${response.statusCode}');
+      print('⬅️ Gemini body: ${response.body}');
+
+      if (response.statusCode == 200) {
+        final data = jsonDecode(response.body);
+        final candidates = data['candidates'] as List?;
+        if (candidates == null || candidates.isEmpty) {
+          throw Exception('No candidates returned from Gemini.');
+        }
+
+        final content = candidates[0]['content'];
+        final parts = content['parts'] as List?;
+        if (parts == null || parts.isEmpty) {
+          throw Exception('No content parts returned from Gemini.');
+        }
+
+        final text = parts[0]['text']?.toString() ?? '';
+        return text.trim();
+      } else {
+        throw Exception(
+          'Gemini error. Status: ${response.statusCode}, Body: ${response.body}',
+        );
+      }
+    } catch (e) {
+      print('❌ Error communicating with Gemini: $e');
+      throw Exception('Error communicating with Gemini: $e');
+    }
+  }
+}
