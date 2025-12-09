@@ -1,8 +1,10 @@
-# my_app
+# Chat Bot with gimini
 
 A new Flutter project.
 
 ## Getting Started
+
+Salmanur Rahman
 
 This project is a starting point for a Flutter application.
 
