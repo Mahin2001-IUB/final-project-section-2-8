@@ -1,4 +1,4 @@
-# my_app
+# Chat Bot with gimini
 
 A new Flutter project.
 
