@@ -8,16 +8,13 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 
 class AiService {
-  // Use your real API key here (DO NOT print it in logs or share it)
+  
   static const String _apiKey = 'AIzaSyBu9rE9AHK6LZ5EJdYCRjPeJydbTAWi0v8';
 
-  //  Use a valid model name for v1beta
-  // You can use either:
-  //   gemini-1.5-flash-001  (older)
-  //   gemini-2.5-flash      (newer, recommended)
+
   static const String _model = 'gemini-2.5-flash';
 
-  // v1beta endpoint for generateContent
+  
   static String get _baseUrl =>
       'https://generativelanguage.googleapis.com/v1beta/models/$_model:generateContent';
 
@@ -50,7 +47,7 @@ class AiService {
         uri,
         headers: {
           'Content-Type': 'application/json',
-          //  Recommended way: send API key in header
+          
           'x-goog-api-key': _apiKey,
         },
         body: jsonEncode(body),
