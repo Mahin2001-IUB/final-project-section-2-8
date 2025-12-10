@@ -1,3 +1,5 @@
+// splash_screen.dart
+
 import 'dart:async';
 import 'package:flutter/material.dart';
 
@@ -30,9 +32,9 @@ class _SplashScreenState extends State<SplashScreen>
 
     _controller.forward();
 
-    // After 3 seconds → go to chat
+    // After 3 seconds → go to Home Page
     Timer(const Duration(seconds: 3), () {
-      Navigator.pushReplacementNamed(context, '/chat');
+      Navigator.pushReplacementNamed(context, '/home'); // NAVIGATION CHANGED TO /home
     });
   }
 
