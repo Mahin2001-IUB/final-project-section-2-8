@@ -1,20 +1,16 @@
-
-
-// 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
-// AIzaSyCmdBYLDJQvCgpKNAKfyop33JcWkd8bcts
-
+// ai_service.dart
 
 import 'dart:convert';
 import 'package:http/http.dart' as http;
+import 'package:flutter/foundation.dart'; // NEW: For kDebugMode
 
 class AiService {
-  
-  static const String _apiKey = 'AIzaSyBu9rE9AHK6LZ5EJdYCRjPeJydbTAWi0v8';
 
+  static const String _apiKey = 'AIzaSyDYSxz_6yUsph_MkTEs_O9bP0RmgaMt4iM';
 
   static const String _model = 'gemini-2.5-flash';
 
-  
+
   static String get _baseUrl =>
       'https://generativelanguage.googleapis.com/v1beta/models/$_model:generateContent';
 
@@ -29,7 +25,7 @@ class AiService {
             "parts": [
               {
                 "text":
-                    "You are a helpful, concise and friendly AI assistant.\n\nUser: $message"
+                "You are a helpful, concise and friendly AI assistant.\n\nUser: $message"
               }
             ]
           }
@@ -40,21 +36,27 @@ class AiService {
         }
       };
 
-      print(' Sending request to Gemini: $uri');
-      print(' Body: ${jsonEncode(body)}');
+      // Wrapped in kDebugMode to resolve linter warnings
+      if (kDebugMode) {
+        print(' Sending request to Gemini: $uri');
+        print(' Body: ${jsonEncode(body)}');
+      }
 
       final response = await http.post(
         uri,
         headers: {
           'Content-Type': 'application/json',
-          
+
           'x-goog-api-key': _apiKey,
         },
         body: jsonEncode(body),
       );
 
-      print(' Gemini status: ${response.statusCode}');
-      print(' Gemini body: ${response.body}');
+      // Wrapped in kDebugMode to resolve linter warnings
+      if (kDebugMode) {
+        print(' Gemini status: ${response.statusCode}');
+        print(' Gemini body: ${response.body}');
+      }
 
       if (response.statusCode == 200) {
         final data = jsonDecode(response.body);
@@ -77,7 +79,10 @@ class AiService {
         );
       }
     } catch (e) {
-      print(' Error communicating with Gemini: $e');
+      // Wrapped in kDebugMode to resolve linter warnings
+      if (kDebugMode) {
+        print(' Error communicating with Gemini: $e');
+      }
       throw Exception('Error communicating with Gemini: $e');
     }
   }

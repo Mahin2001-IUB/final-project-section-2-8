@@ -1,10 +1,20 @@
+// main.dart
 
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart'; // NEW
 import 'chat_screen.dart';
 import 'splash_screen.dart';
+import 'home_screen.dart'; // NEW
+import 'chat_provider.dart'; // NEW
 
 void main() {
-  runApp(const MyApp());
+  // Wrap MyApp with the provider for state management
+  runApp(
+    ChangeNotifierProvider(
+      create: (context) => ChatProvider(),
+      child: const MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -20,6 +30,7 @@ class MyApp extends StatelessWidget {
       initialRoute: '/splash',
       routes: {
         '/splash': (context) => const SplashScreen(),
+        '/home': (context) => const HomeScreen(), // NEW HOME ROUTE
         '/chat': (context) => const ChatScreen(),
       },
 
