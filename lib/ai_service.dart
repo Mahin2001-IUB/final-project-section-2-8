@@ -9,7 +9,7 @@ import 'package:http/http.dart' as http;
 
 class AiService {
   
-  static const String _apiKey = 'AIzaSyBu9rE9AHK6LZ5EJdYCRjPeJydbTAWi0v8';
+  static const String _apiKey = 'AIzaSyAvYy6p7isD4ZqUc8-6oqkTxTekouqRQSk';
 
 
   static const String _model = 'gemini-2.5-flash';

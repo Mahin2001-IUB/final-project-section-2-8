@@ -33,12 +33,11 @@ class MyApp extends StatelessWidget {
         colorScheme: const ColorScheme.light(
           primary: Color(0xFF2563EB),
           secondary: Color(0xFF64748B),
-          background: Colors.white,
           surface: Colors.white,
         ),
         appBarTheme: const AppBarTheme(
           elevation: 0,
-          color: Colors.white,
+          backgroundColor: Colors.white,
           iconTheme: IconThemeData(color: Colors.black),
           titleTextStyle: TextStyle(
             color: Colors.black,
@@ -55,12 +54,11 @@ class MyApp extends StatelessWidget {
         colorScheme: const ColorScheme.dark(
           primary: Color(0xFF3B82F6),
           secondary: Color(0xFF94A3B8),
-          background: Color(0xFF0F172A),
           surface: Color(0xFF1E293B),
         ),
         appBarTheme: const AppBarTheme(
           elevation: 0,
-          color: Color(0xFF0F172A),
+          backgroundColor: Color(0xFF0F172A),
           iconTheme: IconThemeData(color: Colors.white),
           titleTextStyle: TextStyle(
             color: Colors.white,
