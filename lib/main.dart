@@ -1,11 +1,11 @@
 // main.dart
 
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart'; // NEW
+import 'package:provider/provider.dart';
 import 'chat_screen.dart';
 import 'splash_screen.dart';
-import 'home_screen.dart'; // NEW
-import 'chat_provider.dart'; // NEW
+import 'home_screen.dart'; 
+import 'chat_provider.dart'; 
 
 void main() {
   // Wrap MyApp with the provider for state management

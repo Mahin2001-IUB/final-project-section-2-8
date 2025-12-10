@@ -2,16 +2,11 @@
 
 import 'dart:convert';
 import 'package:http/http.dart' as http;
-import 'package:flutter/foundation.dart'; // NEW: For kDebugMode
+import 'package:flutter/foundation.dart'; 
 
 class AiService {
-<<<<<<< HEAD
-  
-  static const String _apiKey = 'AIzaSyAvYy6p7isD4ZqUc8-6oqkTxTekouqRQSk';
-=======
->>>>>>> b7063f06164b44b1efb8bcc82e8c053d0e342b6e
 
-  static const String _apiKey = 'AIzaSyDYSxz_6yUsph_MkTEs_O9bP0RmgaMt4iM';
+  static const String _apiKey = 'AIzaSyAvYy6p7isD4ZqUc8-6oqkTxTekouqRQSk';
 
   static const String _model = 'gemini-2.5-flash';
 
