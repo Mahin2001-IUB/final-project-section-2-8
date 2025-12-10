@@ -4,11 +4,11 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'chat_screen.dart';
 import 'splash_screen.dart';
-import 'home_screen.dart'; 
-import 'chat_provider.dart'; 
+import 'home_screen.dart';
+import 'chat_provider.dart';
+import 'daily_vocab_screen.dart';
 
 void main() {
-  // Wrap MyApp with the provider for state management
   runApp(
     ChangeNotifierProvider(
       create: (context) => ChatProvider(),
@@ -30,8 +30,9 @@ class MyApp extends StatelessWidget {
       initialRoute: '/splash',
       routes: {
         '/splash': (context) => const SplashScreen(),
-        '/home': (context) => const HomeScreen(), // NEW HOME ROUTE
+        '/home': (context) => const HomeScreen(),
         '/chat': (context) => const ChatScreen(),
+        '/daily_vocab': (context) => const DailyVocabScreen(), // New route
       },
 
       themeMode: ThemeMode.system, // Auto switch
